@@ -1,4 +1,5 @@
-let cardsContainer = document.querySelector('.cards');
+
+// functions
 
 function getGithubData(user){
     axios.get(`https://api.github.com/users/${user}`)
@@ -18,15 +19,7 @@ function getGithubFollowersData(user){
 
 }
 
-getGithubFollowersData("domeccleston")
-
-const followersArray = ["domeccleston", "tetondan", "dustinmyers", "justsml", "luishrd", "bigknell", "ladrillo"];
-/* 
-followersArray.forEach((person) => getGithubData(person));
- */
 function cardCreator(userData) {
-
-  console.log(userData);
 
   const cardDiv = document.createElement('div');
   cardDiv.classList.add("card");
@@ -72,7 +65,14 @@ function cardCreator(userData) {
   userFollowing.textContent = `Following: ${userData.following}`;
   userBio.textContent = userData.bio;
 
-
-
   return cardDiv;
 } 
+
+// DOM selectors and events listeners
+
+const cardsContainer = document.querySelector('.cards');
+
+// run functions
+
+getGithubData("domeccleston")
+getGithubFollowersData("domeccleston")
