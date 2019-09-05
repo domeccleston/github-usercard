@@ -5,19 +5,14 @@
 
 let cardsContainer = document.querySelector('.cards');
 
-let myData = axios.get('https://api.github.com/users/domeccleston')
-.then(response => {
-   cardsContainer.appendChild(cardCreator(response));
-})
-.catch(error => console.log(error));
-
-
-function simpleComponent(data) {
-  console.log(data)
-  heading = document.createElement('h1');
-  heading.textContent = data.data.login;
-  document.body.appendChild(heading);
+function getGithubData(user){
+    axios.get(`https://api.github.com/users/${user}`)
+    .then(response => {
+      cardsContainer.appendChild(cardCreator(response));
+    })
+    .catch(error => console.log(error));
 }
+
 
 
 /* Step 2: Inspect and study the data coming back, this is YOUR 
@@ -41,7 +36,9 @@ function simpleComponent(data) {
           user, and adding that card to the DOM.
 */
 
-const followersArray = [];
+const followersArray = ["domeccleston", "tetondan", "dustinmyers", "justsml", "luishrd", "bigknell", "ladrillo"];
+
+followersArray.forEach((person) => getGithubData(person));
 
 /* Step 3: Create a function that accepts a single object as its only argument,
           Using DOM methods and properties, create a component that will return the following DOM element:
@@ -62,9 +59,6 @@ const followersArray = [];
 </div>
 
 */
-
-const userImgURL = '#'
-const userGithubPageAddress = '#'
 
 function cardCreator(userData) {
 
